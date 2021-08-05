@@ -36,9 +36,9 @@ jobs:
         run: az aks create -n aksforcicd -g CICDAKS-RG --generate-ssh-keys -l eastus
       # Manually Create a Service Principal and configure Github Actions to use sp to connect to Subscription.
       - name: Az ACR Create
-        run: az acr create -n acrforaks -g CICDAKS-RG -l eastus --sku Basic
+        run: az acr create -n ACRforAKSAug -g CICDAKS-RG -l eastus --sku Basic
       - name: Az ACR attach to AKS
-        run: az aks update -n aksforcicd -g CICDAKS-RG --attach-acr acrforaks
+        run: az aks update -n aksforcicd -g CICDAKS-RG --attach-acr ACRforAKSAug
   Build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
