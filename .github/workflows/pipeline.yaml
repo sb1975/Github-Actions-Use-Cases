@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: pipeline
+name: Pipeline
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -33,7 +33,6 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: ACR login
         run: az acr login -n $ACRNAME
-      # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
       - name: Build and push image
