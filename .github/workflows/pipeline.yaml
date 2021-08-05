@@ -11,62 +11,16 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 # Env to set reusable variables
-env:
-  ACRNAME: handsonakspipeline
+#env:
+#  ACRNAME: handsonakspipeline
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  CI:
+  # This workflow contains 3  jobs called Platform,Build and Deploy
+  Platform:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Git checkout
-        uses: actions/checkout@v2
-
-      - name: az CLI login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
-      - name: ACR login
-        run: az acr login -n $ACRNAME
-        
-      
-      - name: Build and push image
-        uses: docker/build-push-action@v2
-        with:
-          context: ./Chapter15
-          push: true
-          tags: ${{ env.ACRNAME }}.azurecr.io/website/website:${{ github.run_number }}
-          
-  CD:
-    runs-on: ubuntu-latest
-    needs: CI
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v2
-
-      - name: Azure Kubernetes set context
-        uses: Azure/aks-set-context@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: CICDAKS-RG
-          cluster-name: aksforcicd
-
-      - name: Helm upgrade
-        run: |
-          helm upgrade website Chapter15/website --install \
-            --set image.repository=$ACRNAME.azurecr.io/website/website \
-            --set image.tag=${{ github.run_number }}
-      - name: Get service IP
-        run: |
-          PUBLICIP=""
-          while [ -z $PUBLICIP ]; do
-            echo "Waiting for public IP..."
-            PUBLICIP=$(kubectl get service website -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-            [ -z "$PUBLICIP" ] && sleep 10
-          done
-          echo $PUBLICIP
+      - name: AZ RG Create
+        run: az group create --name CICDAKS-RG-1 -l eastus
