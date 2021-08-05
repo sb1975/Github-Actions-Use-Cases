@@ -19,8 +19,16 @@ jobs:
   Platform:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+	
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+	  # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: az CLI login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: AZ RG Create
         run: az group create --name CICDAKS-RG-1 -l eastus
