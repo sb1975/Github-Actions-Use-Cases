@@ -11,9 +11,9 @@ on:
     - .github/workflows/pipeline.yaml
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
- # Env to set reusable variables
- env:
-  ACRNAME: handsonakspipeline
+# Env to set reusable variables
+env:
+ ACRNAME: handsonakspipeline
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "CI"
@@ -42,8 +42,3 @@ jobs:
           context: ./Chapter15
           push: true
           tags: ${{ env.ACRNAME }}.azurecr.io/website/website:${{ github.run_number }}
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
