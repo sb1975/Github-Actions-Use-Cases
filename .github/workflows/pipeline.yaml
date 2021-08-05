@@ -12,8 +12,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
  # Env to set reusable variables
-env:
-  ACRNAME: handsonakspipeline
+ env:
+   ACRNAME: handsonakspipeline
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "CI"
