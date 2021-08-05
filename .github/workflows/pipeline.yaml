@@ -33,7 +33,7 @@ jobs:
       - name: Az RG Create
         run: az group create --name CICDAKS-RG -l eastus
       - name: AZ AKS Create
-        run: az aks create -n aksforcicd -g CICDAKS-RG --generate-ssh-keys -l eastus
+        run: az aks create -n aksforcicd -g CICDAKS-RG --generate-ssh-keys -l eastus --service-principal ${{ secrets.clientId }} --client-secret ${{ secrets.clientSecret }}
       # Manually Create a Service Principal and configure Github Actions to use sp to connect to Subscription.
       - name: Az ACR Create
         run: az acr create -n ACRforAKSAug -g CICDAKS-RG -l eastus --sku Basic
