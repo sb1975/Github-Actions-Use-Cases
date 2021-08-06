@@ -2,8 +2,8 @@ Automate Software Deployment using Github Actions
 Objective :
     This repository aims to provide steps, guidelines to use Github Actions to build and deploy resources on Azure Cloud.
 
-Overview
-[[./Overview.JPG|alt=octocat]]
+
+[[https://github.com/sb1975/Github-Actions-Use-Cases/blob/main/Overview.JPG]]
 
 
 Use Case :
