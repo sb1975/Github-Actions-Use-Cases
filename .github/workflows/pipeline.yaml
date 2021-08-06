@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
 # Env to set reusable variables
 env:
-  RGNAME: CICDAKS-RGAug8
-  ACRNAME: ACRforAKSAug8
-  AKSNAME: aksforcicdAug8
+  RGNAME: rgcicd4aksaug8
+  ACRNAME: acr4aksaug8
+  AKSNAME: aks4cicdaug8
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains 3  jobs called Platform,Build and Deploy
