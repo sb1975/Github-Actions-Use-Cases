@@ -7,13 +7,13 @@ on:
   push:
     branches: [ main ]
     paths: 
-    - Chapter15/**
+    - Azure/**
     - .github/workflows/pipeline.yaml
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 # Env to set reusable variables
 env:
-  ACRNAME: handsonakspipeline
+  ACRNAME: acr4aksaug9
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -59,7 +59,7 @@ jobs:
 
       - name: Helm upgrade
         run: |
-          helm upgrade website Chapter15/website --install \
+          helm upgrade website Azure/website --install \
             --set image.repository=$ACRNAME.azurecr.io/website/website \
             --set image.tag=${{ github.run_number }}
 
