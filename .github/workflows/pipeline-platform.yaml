@@ -17,7 +17,7 @@ env:
   AKSNAME: aks4cicdaug9
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains 3  jobs called Platform,Build and Deploy
+  # This workflow contains a single  job called Platform to create the AKS Cluster
   Platform:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
