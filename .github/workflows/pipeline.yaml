@@ -17,30 +17,7 @@ env:
   AKSNAME: aks4cicdaug9
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains 3  jobs called Platform,Build and Deploy
-  Platform:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Git checkout
-        uses: actions/checkout@v2
-
-      - name: az CLI login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Az RG Create
-        run: az group create --name $RGNAME -l eastus
-      - name: AZ AKS Create
-        run: az aks create -n $AKSNAME -g $RGNAME --generate-ssh-keys -l eastus --service-principal ${{ secrets.clientId }} --client-secret ${{ secrets.clientSecret }}
-      # Manually Create a Service Principal and configure Github Actions to use sp to connect to Subscription.
-      - name: Az ACR Create
-        run: az acr create -n $ACRNAME -g $RGNAME -l eastus --sku Basic
-      - name: Az ACR attach to AKS
-        run: az aks update -n $AKSNAME -g $RGNAME --attach-acr $ACRNAME
+  # This workflow contains 2  jobs called Build and Deploy
   Build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
