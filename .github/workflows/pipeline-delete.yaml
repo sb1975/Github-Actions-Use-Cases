@@ -1,0 +1,38 @@
+# This is a basic workflow to delete the Azure RGs with Actions
+name: Pipeline-Delete
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+    paths: 
+#    - Chapter15/**
+    - .github/workflows/pipeline-delete.yaml
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+# Env to set reusable variables
+env:
+  RGNAME: rgcicd4aksaug9
+  ACRNAME: acr4aksaug9
+  AKSNAME: aks4cicdaug9
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains 3  jobs called Platform,Build and Deploy
+  Delete:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: az CLI login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Az RG Delete
+        run: az group delete --name $RGNAME -y --no-wait
+      - name: Az RG Delete for Kube Cluster
+        run: az group list --query "[?starts_with(name,'MC')].[name]" --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
