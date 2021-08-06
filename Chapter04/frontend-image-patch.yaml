@@ -1,6 +1,0 @@
-spec:
-  template:
-    spec:
-      containers:
-      - name: php-redis
-        image: gcr.io/google-samples/gb-frontend:v3
