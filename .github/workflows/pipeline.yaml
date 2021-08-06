@@ -36,7 +36,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           resource-group: rgcicd4aksaug8
-          cluster-name: $AKSNAME
+          cluster-name: aks4cicdaug8
 
       - name: Helm upgrade
         run: |
