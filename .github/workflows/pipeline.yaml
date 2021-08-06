@@ -25,7 +25,10 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-
+      - name: az CLI login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Azure Kubernetes set context
         uses: Azure/aks-set-context@v1
         with:
