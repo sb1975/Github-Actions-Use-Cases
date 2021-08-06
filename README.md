@@ -3,8 +3,7 @@ Objective :
     This repository aims to provide steps, guidelines to use Github Actions to build and deploy resources on Azure Cloud.
 
 
-[[https://github.com/sb1975/Github-Actions-Use-Cases/blob/main/Overview.JPG]]
-
+![alt text](https://github.com/sb1975/Github-Actions-Use-Cases/blob/main/Overview.JPG)
 
 Use Case :
  1. Automate Creation of an AKS Cluster and ACR using Github Actions
