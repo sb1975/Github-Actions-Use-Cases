@@ -9,6 +9,7 @@ Pre-requisite :
 
 1. Active Azure account or Trial Account
 2. Github account
+3. Awareness of github and Azure.
 
 Use Case :
  1. Automate Creation of an AKS Cluster and ACR using Github Actions
