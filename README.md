@@ -3,7 +3,7 @@ Objective :
     This repository aims to provide steps, guidelines to use Github Actions to build and deploy resources on Azure Cloud.
 
 
-![alt text](https://github.com/sb1975/Github-Actions-Use-Cases/blob/main/Overview.JPG)
+![alt text](https://github.com/sb1975/Github-Actions-Use-Cases/blob/main/Overview.JPG){:height="50%" width="50%"}
 
 Pre-requisite :
 
